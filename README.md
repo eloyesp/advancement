@@ -29,7 +29,7 @@ Write some tests for the migrations:
 
     require 'test_helper'
 
-    class AdvancementPlacesTest < Advancement::TestCase
+    class PlacesMigrationTest < Advancement::TestCase
 
       def test_two_places_are_migrated
         run_migration
