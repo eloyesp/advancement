@@ -14,5 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "advancement"
   gem.require_paths = ["lib"]
   gem.version       = Advancement::VERSION
-end
 
+#  gem.add_dependency "rails", "~> 3.2.2"
+
+  gem.add_development_dependency "minitest"
+end
