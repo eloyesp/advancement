@@ -15,8 +15,8 @@ module Advancement::Adapters
 
     # Initialize the yaml adapter for a given source
 
-    def initialize source
-      @data = Psych.load_file source
+    def initialize yaml
+      @data = Psych.load yaml
     end
 
     # Calls block once for each record in the yaml file.
