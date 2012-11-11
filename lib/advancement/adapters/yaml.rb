@@ -6,11 +6,38 @@ module Advancement::Adapters
     include Enumerable
 
     class Record
-
       def initialize record_data
         @attributes = record_data
+        symbolice_keys
       end
 
+      def [](key)
+        if @attributes.has_key? key
+          @attributes[key]
+        end
+      end
+
+      private
+
+        def method_missing method, *args
+          if @symboliced_keys.include? method
+            @attributes[@symboliced_keys[method]]
+          else
+            super
+          end
+        end
+
+        def symbolice_keys
+          @symboliced_keys = {}
+          @attributes.keys.each do |key|
+            simbolized_key = key.gsub(/::/, '/')
+              .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+              .gsub(/([a-z\d])([A-Z])/,'\1_\2')
+              .tr('-', '_')
+              .downcase.to_sym
+            @symboliced_keys[simbolized_key] = key
+          end
+        end
     end
 
     # Initialize the yaml adapter for a given source
