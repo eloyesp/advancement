@@ -1,8 +1,18 @@
 class Advancement::Migration
-  def initialize options = {}
-    @legacy_table = options.delete :legacy_table
-    @legacy_table.each do
-    end
+
+  # Inicializa la migración
+  #
+  # @param loader Loader where data will be feed.
+
+  def initialize loader
+    @loader = loader
   end
+
+  # Load a single record to the loader
+
+  def load *args
+    @loader.load(*args)
+  end
+
 end
 
