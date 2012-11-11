@@ -1,5 +1,3 @@
-# require 'psych'
-
 module Advancement::Adapters
 
   # The YAML adapter is used internaly to read the fixtures for the tests.

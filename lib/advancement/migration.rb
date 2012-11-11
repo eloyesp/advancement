@@ -1,7 +1,5 @@
 class Advancement::Migration
 
-  # Inicializa la migración
-  #
   # @param loader Loader where data will be feed.
 
   def initialize loader
