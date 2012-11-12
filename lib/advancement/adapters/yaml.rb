@@ -8,35 +8,37 @@ module Advancement::Adapters
     class Record
       def initialize record_data
         @attributes = record_data
-        symbolice_keys
       end
 
       def [](key)
         if @attributes.has_key? key
           @attributes[key]
+        elsif symbolized_keys.has_key? key
+          @attributes[symbolized_keys[key]]
         end
       end
 
       private
 
         def method_missing method, *args
-          if @symboliced_keys.include? method
-            @attributes[@symboliced_keys[method]]
+          if symbolized_keys.include? method
+            self[method]
           else
             super
           end
         end
 
-        def symbolice_keys
-          @symboliced_keys = {}
-          @attributes.keys.each do |key|
-            simbolized_key = key.gsub(/::/, '/')
-              .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-              .gsub(/([a-z\d])([A-Z])/,'\1_\2')
-              .tr('-', '_')
-              .downcase.to_sym
-            @symboliced_keys[simbolized_key] = key
-          end
+        def symbolized_keys
+          @symbolized_keys ||=
+            Hash[@attributes.keys.map { |key| [symbolize_key(key), key] }]
+        end
+
+        def symbolize_key key
+          key.gsub(/::/, '/')
+                .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+                .gsub(/([a-z\d])([A-Z])/,'\1_\2')
+                .tr('-', '_')
+                .downcase.to_sym
         end
     end
 
