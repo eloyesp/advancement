@@ -1,10 +1,10 @@
 require 'test_helper'
 require 'advancement/adapters/yaml'
 
-class Advancement::Adapters::YAMLTest < MiniTest::Unit::TestCase
+class Advancement::Adapters::YamlTest < MiniTest::Unit::TestCase
 
   def setup
-    @yaml = Advancement::Adapters::YAML.new <<EOF
+    @adapter = Advancement::Adapters::YAML.new <<EOF
 ---
 - CODE: 3
   NAME: FIXED
@@ -23,14 +23,14 @@ EOF
   end
 
   def test_each
-    @yaml.each do |r|
+    @adapter.each do |r|
       assert_includes [3, 4, 5], r["CODE"]
       assert_includes [3, 4, 5], r.code
     end
   end
 
   def test_first
-    first = @yaml.first 2
+    first = @adapter.first 2
     assert 2, first.size
   end
 
