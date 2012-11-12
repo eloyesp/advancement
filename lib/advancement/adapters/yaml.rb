@@ -1,11 +1,21 @@
 module Advancement::Adapters
 
-  # The YAML adapter is used internaly to read the fixtures for the tests.
+  # The YAML adapter is used internaly to read the fixtures for the tests, but
+  # will be used to migrate from yaml.
 
   class YAML
     include Enumerable
 
+    # The records cuack like active records, making easy to have a common
+    # language for migrations.
+    # @example Attributes can be accesed in different ways
+    #   place = Record.new "PLACES-LN" => "data", "PLACES-NS" => "more data"
+    #   place["PLACES-LN"] #=> "data"
+    #   place.places_in    #=> "data"
+    #   place[:places_in]  #=> "data"
+
     class Record
+
       def initialize record_data
         @attributes = record_data
       end
@@ -43,6 +53,8 @@ module Advancement::Adapters
     end
 
     # Initialize the yaml adapter for a given source
+    #
+    # @param [String] yaml Source data
 
     def initialize yaml
       @data = Psych.load yaml
