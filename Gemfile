@@ -9,6 +9,7 @@ group :development do
   gem 'pry'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'minitest-reporters'
   gem 'libnotify'
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
