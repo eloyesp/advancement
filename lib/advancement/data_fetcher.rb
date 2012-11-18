@@ -23,7 +23,6 @@ class Advancement::DataFetcher
   # Fetch some records to make a fixture.
   #
   # @param [Integer] count how much records to fetch.
-  # @return [String] yaml records
 
   def fetch_for_fixture count = 2
     records = @adapter.first count
