@@ -8,13 +8,13 @@ class Advancement::DataFetcher
   def initialize options = {}
     @options = options
     @source = @options.delete :source
-    @migration = configure_migration @options.delete :migration
-    @adapter = configure_adapter
+    @migration = @options.delete :migration
+    @adapter = configure_adapter @source
   end
 
   # Start fetching records
 
-  def start
+  def start_fetching
     @adapter.each do |record|
       @migration.migrate record
     end
@@ -33,13 +33,14 @@ class Advancement::DataFetcher
 
   private
 
-    def configure_adapter
-      #TODO: Implement
-    end
-
-    def configure_migration migration_class
-      loader = @options.delete :loader || BulkLoader.new
-      @migration = @options.delete(:migration).new loader
+    def configure_adapter source
+      case File.extname source
+      when ".yml"
+        require 'advancement/adapters/yaml'
+        @adapter = Advancement::Adapters::YAML.new @source
+      else
+        raise "cannot handle that"
+      end
     end
 
 end
