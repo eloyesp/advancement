@@ -25,9 +25,9 @@ class Advancement::DataFetcher
   # @param [Integer] count how much records to fetch.
   # @return [String] yaml records
 
-  def build_fixture count = 2
+  def fetch_for_fixture count = 2
     records = @adapter.first count
-    records = records.map { |r| r.attributes }.to_yaml
+    records = records.map { |r| r.attributes }
     records
   end
 

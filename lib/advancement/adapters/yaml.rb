@@ -16,6 +16,8 @@ module Advancement::Adapters
 
     class Record
 
+      attr_reader :attributes
+
       def initialize record_data
         @attributes = record_data
       end
