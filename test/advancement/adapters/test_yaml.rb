@@ -12,15 +12,15 @@ class Advancement::Adapters::YamlTest < MiniTest::Unit::TestCase
   end
 
   def test_each
-    @adapter.each do |r|
-      assert_includes [3, 4, 5], r["CODE"]
-      assert_includes [3, 4, 5], r.code
+    @adapter.each do |record|
+      assert_includes [3, 4, 5], record["CODE"]
+      assert_includes [3, 4, 5], record.code
     end
   end
 
   def test_first
-    first = @adapter.first 2
-    assert 2, first.size
+    firsts = @adapter.first 2
+    assert 2, firsts.size
   end
 
 end
