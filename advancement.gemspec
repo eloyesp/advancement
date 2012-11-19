@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "rails", "~> 3.2"
 
-  gem.add_development_dependency "sqlite3"
-  gem.add_development_dependency "minitest"
+  gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'guard'
+  gem.add_development_dependency 'guard-minitest'
+  gem.add_development_dependency 'minitest-reporters'
 end
