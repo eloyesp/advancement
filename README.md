@@ -10,7 +10,9 @@ a phased rollout model.
 
 Add this line to your application's Gemfile:
 
-    gem 'advancement'
+```ruby
+gem 'advancement'
+```
 
 And then execute:
 
@@ -27,39 +29,45 @@ Generate the migration with test and fixtures
 
 Write some tests for the migrations:
 
-    require 'test_helper'
+```ruby
+require 'test_helper'
 
-    class PlacesMigrationTest < Advancement::TestCase
+class PlacesMigrationTest < Advancement::TestCase
 
-      def test_two_places_are_migrated
-        run_migration
-        assert_migrated Place, :count => 2
-      end
+  def test_two_places_are_migrated
+    run_migration
+    assert_migrated Place, :count => 2
+  end
 
-    end
+end
+```
 
 Configure this migration in `'app/advancement/places_migration.rb'`
 
-    # places_migration.rb
+```ruby
+# places_migration.rb
 
-    class PlacesMigration < Advancement::Migration
+class PlacesMigration < Advancement::Migration
 
-      Constrains = [:name]
+  Constrains = [:name]
 
-      def build_place seed
-        {name: seed.id, lat: seed.latit, lng: seed.longit}
-      end
+  def build_place seed
+    {name: seed.id, lat: seed.latit, lng: seed.longit}
+  end
 
-    end
+end
+```
 
 Configure migrations in `'config/advancement.rb'`
 
-    # advancement.rb
+```ruby
+# advancement.rb
 
-    Advancement.configure do |config|
-      config.encoding = "CP1252"
-      config.tables = ["places.dbf"]
-    end
+Advancement.configure do |config|
+  config.encoding = "CP1252"
+  config.tables = ["places.dbf"]
+end
+```
 
 Then run your migrations with
 
