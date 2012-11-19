@@ -1,0 +1,13 @@
+Description:
+    Generates a migration to fetch data from a legacy database to this app.
+    This also generate tests and fixtures from the actual data making possible
+    to run both applications while you develop this and make sure that
+    migrations will keep working.
+
+Example:
+    rails generate advancement:migration db/legacy/places.dbf
+
+    Will create:
+        app/advancement/places_migration.rb
+        test/unit/advancement/places_migration_test.rb
+        test/unit/advancement/fixtures/places.yml
