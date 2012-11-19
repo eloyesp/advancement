@@ -1,5 +1,7 @@
 require "advancement/version"
 
 module Advancement
-  # Your code goes here...
+  autoload :DataFetcher, 'advancement/data_fetcher'
+  autoload :Migration,   'advancement/migration'
 end
+
