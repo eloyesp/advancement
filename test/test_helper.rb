@@ -13,7 +13,7 @@ MiniTest::Reporters.use! [
 class MiniTest::Unit::TestCase
 
   def fixture_data_file
-    File.new(File.join(File.dirname(__FILE__), 'test_data.yml'))
+    File.new(File.join(File.dirname(__FILE__), 'fixture_data.yml'))
   end
 
 end
