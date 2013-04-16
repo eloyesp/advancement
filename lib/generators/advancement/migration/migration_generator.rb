@@ -1,3 +1,5 @@
+require 'advancement'
+
 module Advancement
   module Generators
 
