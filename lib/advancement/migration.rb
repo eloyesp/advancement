@@ -1,15 +1,7 @@
 class Advancement::Migration
 
-  # @param loader Loader where data will be feed.
-
-  def initialize loader
-    @loader = loader
-  end
-
-  # Load a single record to the loader
-
-  def load *args
-    @loader.load(*args)
+  def migrate(record)
+    raise NotImplementedError.new
   end
 
 end

@@ -1,10 +1,14 @@
 require 'test_helper'
 require 'advancement/migration'
-require 'minitest/mock'
 
-class AdvancementMigrationTest <  MiniTest::Unit::TestCase
+class Advancement::MigrationTest <  MiniTest::Unit::TestCase
 
-  class PlacesMigration < Advancement::Migration
+  def test_subclases_must_implement_migrate_record
+    @migration = Advancement::Migration.new
+    record = {}
+    assert_raises NotImplementedError do
+      @migration.migrate(record)
+    end
   end
 
 end
