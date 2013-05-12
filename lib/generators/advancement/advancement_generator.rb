@@ -3,7 +3,7 @@ require 'advancement'
 module Advancement
   module Generators
 
-    class MigrationGenerator < Rails::Generators::Base
+    class AdvancementGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
       argument :migration
 

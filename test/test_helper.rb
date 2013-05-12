@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'rails/generators/test_case'
-require 'generators/advancement/migration/migration_generator'
 
 # Best reports
 require 'minitest/reporters'
