@@ -11,17 +11,11 @@ module Advancement
         template "migration.rb.erb", "app/advancement/#{migration}_migration.rb"
       end
 
-      def generate_test
-        template "migration_test.rb.erb", "test/unit/advancement/#{migration}_migration_test.rb"
-      end
-
-      def generate_fixture
-        template "fixture.yml", "test/unit/advancement/fixtures/#{migration}.yml"
-      end
-
       def show_readme
         readme "README" if behavior == :invoke
       end
+
+      hook_for :test_framework
 
       protected
 
