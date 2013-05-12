@@ -6,8 +6,7 @@ class TestMigrationGenerator <Rails::Generators::TestCase
   setup :prepare_destination
 
   test 'generate the migration class in the advancement folder' do
-    run_generator ['places.yaml']
-    assert_file 'app/advancement/places_migration.rb'
+    run_generator ['places']
     assert_file 'app/advancement/places_migration.rb'
     assert_file 'test/unit/advancement/places_migration_test.rb'
     assert_file 'test/unit/advancement/fixtures/places.yml'

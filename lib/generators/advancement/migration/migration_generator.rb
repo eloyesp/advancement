@@ -5,18 +5,18 @@ module Advancement
 
     class MigrationGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
-      argument :legacy_source
+      argument :migration
 
       def generate_migration
-        template "migration.rb", "app/advancement/#{file_name}_migration.rb"
+        template "migration.rb.erb", "app/advancement/#{migration}_migration.rb"
       end
 
       def generate_test
-        template "migration_test.rb", "test/unit/advancement/#{file_name}_migration_test.rb"
+        template "migration_test.rb.erb", "test/unit/advancement/#{migration}_migration_test.rb"
       end
 
       def generate_fixture
-        template "fixture.yml", "test/unit/advancement/fixtures/#{file_name}.yml"
+        template "fixture.yml", "test/unit/advancement/fixtures/#{migration}.yml"
       end
 
       def show_readme
@@ -25,21 +25,8 @@ module Advancement
 
       protected
 
-        def file_name
-          @file_name ||= File.basename(legacy_source, File.extname(legacy_source))
-        end
-
         def class_name
-          "#{file_name}".camelize
-        end
-
-        def fixtures
-          fetcher = Advancement::DataFetcher.new source: File.new(legacy_source)
-          fetcher.fetch_for_fixture
-        end
-
-        def attribute_names
-          fixtures.first.keys
+          migration.camelize
         end
 
     end

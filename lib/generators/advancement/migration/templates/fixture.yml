@@ -1,2 +1,1 @@
-<%= fixtures.to_yaml -%>
-
+# This file will be filled with the records that cause you trouble.
