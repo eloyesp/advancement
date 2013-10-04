@@ -1,4 +1,4 @@
-# Advancement
+# Advancement [![Gem Version](https://badge.fury.io/rb/advancement.png)](http://badge.fury.io/rb/advancement)
 
 Progressive application retirement with TDD.
 
